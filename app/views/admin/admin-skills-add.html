@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-offset-4">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <strong>Add a skill</strong>
+            </div>
+
+            <div class="panel-body">
+
+                <label class="text-success" ng-show="success">Skill successfully added</label>
+                <label class="text-danger" ng-show="error">Something went wrong..</label>
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" class="form-control" placeholder="Name.." ng-model="skill.name">
+                </div>
+
+                <div class="form-group">
+                    <label for="native">Native</label>
+
+                    <div class="form-control" style="border: none;">
+                        <input id="native" type="checkbox" ng-model="skill.native">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="attribute">Attribute</label>
+                    <select id="attribute" class="form-control"
+                            ng-model="skill.attribute"
+                            ng-options="attribute as attribute.name for attribute in attributes"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="form-control" ng-model="skill.description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input class="pull-right" type="submit" value="Save to database" ng-click="saveSkill()">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

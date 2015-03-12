@@ -1,0 +1,33 @@
+<div ng-init="loadItems = false">
+    <div class="panel panel-default" ng-repeat="color in ::colors" ng-click="loadItems = true">
+        <div class="panel-heading">
+            <span class="accordion-toggle collapsed" data-toggle="collapse"
+                  data-target="#{{$index + 'col'}}">
+                <header>
+                    <label>{{color.name}}</label>
+                </header>
+            </span>
+        </div>
+        <ul id="{{$index + 'col'}}" class="list-group collapse">
+            <li class="list-group-item"
+                ng-repeat="spell in ::spells"
+                ng-if="(color.name === spell.color.name) && loadItems">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-9 collapsed" data-toggle="collapse" data-target="#{{$index + 'sp'}}">
+                            <strong class="text-info"><b class="caret"></b> {{spell.name}}</strong>
+                        </div>
+                        <div class="col-xs-6 col-md-3" ng-if="user.loggedIn">
+                            <a class="pull-right" ng-click="addSpellToCharacter(spell)">add</a>
+                        </div>
+                    </div>
+                    <div id="{{$index + 'sp'}}" class="row collapse">
+                        <div class="col-xs-9 col-md-9">
+                            <div class="description">{{spell.description}}</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

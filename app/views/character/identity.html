@@ -1,0 +1,106 @@
+<section id="char-identity">
+    <header class="character-view-header">Identity</header>
+    <hr>
+
+    <div ng-if="character.isNew" class="form-group">
+        <label for="charName">Name</label>
+        <input id="charName" type="text" class="form-control" ng-model="character.name"/>
+    </div>
+    <div ng-if="!character.isNew" class="form-group">
+        <label for="charName1">Name</label>
+
+        <div class="input-group">
+            <input id="charName1" type="text" class="form-control" ng-model="character.name" disabled/>
+            <span class="input-group-addon" data-toggle="modal" data-target="#rename-modal">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="modal fade" id="rename-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Rename character</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="char-rename">New name</label>
+                        <input id="char-rename" type="text" class="form-control" ng-model="newName"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="renameCharacter(newName)">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="charRace">Race</label>
+
+        <div class="input-group">
+            <select id="charRace" class="form-control"
+                    ng-model="character.race"
+                    ng-options="race.name for race in races track by race.name">
+                <option value="">Select a race..</option>
+            </select>
+            <span class="input-group-addon"><a class="collapsed" data-toggle="collapse"
+                                               data-target="#character-race"><span
+                    class="glyphicon glyphicon-chevron-down"></span></a></span>
+        </div>
+
+        <div id="character-race" class="row collapse">
+            <div class="col-xs-12">
+                {{character.race.description}}
+            </div>
+            <div ng-repeat="trait in character.race.racialTraits">
+                <div class="col-xs-12">
+                    <label class="text-warning">{{trait.name}}</label>
+                </div>
+                <div class="col-xs-12">
+                    {{trait.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="charGuild">Guild</label>
+
+        <div class="input-group">
+            <select id="charGuild" class="form-control"
+                    ng-model="character.guild"
+                    ng-options="guild.name for guild in guilds track by guild.name">
+                <option value="">Select a guild..</option>
+            </select>
+            <span class="input-group-addon"><a class="collapsed" data-toggle="collapse"
+                                               data-target="#character-guild"><span
+                    class="glyphicon glyphicon-chevron-down"></span></a></span>
+        </div>
+
+        <div id="character-guild" class="row collapse">
+            <div class="col-xs-12">
+                {{character.guild.description}}
+            </div>
+            <div class="col-xs-12">
+                <label class="text-warning">{{character.guild.boon.name}}</label>
+            </div>
+            <div class="col-xs-12">
+                {{character.guild.boon.description}}
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="charColor">Colors</label>
+
+        <div id="charColor">
+            <div class="color-box" ng-repeat="color in ::colors">
+                <input id="{{color.name + 'cb'}}" type="checkbox"
+                       ng-model="character.colors[color.name]" class="cb-checkbox"/>
+                <label for="{{color.name + 'cb'}}"><span class="{{color.name}}"></span></label>
+            </div>
+        </div>
+    </div>
+</section>

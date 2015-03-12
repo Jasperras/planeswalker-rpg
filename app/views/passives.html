@@ -1,0 +1,33 @@
+<div ng-init="loadItems = false">
+    <div class="panel panel-default" ng-repeat="attribute in ::attributes"
+         ng-if="attribute.secondary == false" ng-click="loadItems = true">
+        <div class="panel-heading">
+            <span class="accordion-toggle collapsed" data-toggle="collapse" data-target="#{{$index +'at'}}">
+                <header>
+                    <label>{{attribute.name}}</label>
+                </header>
+            </span>
+        </div>
+        <ul id="{{$index + 'at'}}" class="list-group collapse">
+            <li class="list-group-item"
+                ng-if="(attribute.name === passive.attribute.name) && loadItems"
+                ng-repeat="passive in ::passives">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-9 collapsed" data-toggle="collapse" data-target="#{{$index + 'pas'}}">
+                            <strong class="text-info"><b class="caret"></b> {{passive.name}}</strong>
+                        </div>
+                        <div class="col-xs-6 col-md-3" ng-if="user.loggedIn">
+                            <a class="pull-right" ng-click="addPassiveToCharacter(passive)">add</a>
+                        </div>
+                    </div>
+                    <div id="{{$index + 'pas'}}" class="row collapse">
+                        <div class="col-xs-9 col-md-9">
+                            <div class="description">{{passive.description}}</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

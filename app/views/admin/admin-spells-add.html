@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-md-offset-4">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <strong>Add a spell</strong>
+            </div>
+
+            <div class="panel-body">
+
+                <label class="text-success" ng-show="success">Spell successfully added</label>
+                <label class="text-danger" ng-show="error">Something went wrong..</label>
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" class="form-control" placeholder="Name.." ng-model="spell.name">
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select id="type" class="form-control"
+                            ng-model="spell.type">
+                        <option value="Instant">Instant</option>
+                        <option value="Sorcery">Sorcery</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cost">Cost</label>
+                    <input id="cost" type="number" class="form-control" ng-model="spell.cost">
+                </div>
+
+                <div class="form-group">
+                    <label for="color">Color</label>
+                    <select id="color" class="form-control"
+                            ng-model="spell.color"
+                            ng-options="color as color.name for color in colors"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="form-control" ng-model="spell.description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input class="pull-right" type="submit" value="Save to database" ng-click="saveSpell()">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

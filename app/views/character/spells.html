@@ -1,0 +1,18 @@
+<section id="char-spells">
+    <header class="character-view-header">Spells</header>
+    <hr>
+
+    <ul class="list-group">
+    <li class="list-group-item" ng-repeat="spell in character.spells">
+        <div class="collapsed" data-toggle="collapse" data-target="#{{$index + 'sp'}}">
+            <a><b class="caret"></b> {{spell.name}}</a>
+        </div>
+        <div id="{{$index + 'sp'}}" class="collapse">
+            <div>{{spell.description}}</div>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <a ui-sref="spells">Add a spell</a>
+    </li>
+    </ul>
+</section>

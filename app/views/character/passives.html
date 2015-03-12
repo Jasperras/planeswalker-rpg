@@ -1,0 +1,18 @@
+<section id="char-passives">
+    <header class="character-view-header">Passives</header>
+    <hr>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="passive in character.passives">
+            <div class="collapsed" data-toggle="collapse" data-target="#{{$index + 'pas'}}">
+                <a><b class="caret"></b> {{passive.name}}</a>
+            </div>
+            <div id="{{$index + 'pas'}}" class="collapse">
+                <div>{{passive.description}}</div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <a ui-sref="passives">Add a passive</a>
+        </li>
+    </ul>
+</section>

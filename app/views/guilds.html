@@ -1,0 +1,30 @@
+<div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="guild in ::guilds">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4><strong>{{guild.name}}</strong></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="description">{{guild.description}}</div>
+                    </div>
+                </div>
+                <div ng-if="guild.boon.name != null">
+                    <div style="margin-top: 15px;" class="row">
+                        <div class="col-xs-12">
+                            <label class="text-info">{{guild.boon.name}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="description">{{guild.boon.description}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

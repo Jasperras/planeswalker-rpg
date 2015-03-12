@@ -1,0 +1,27 @@
+<div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="race in ::races">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4><strong>{{race.name}}</strong></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="description">{{race.description}}</div>
+                    </div>
+                </div>
+                <div class="row" ng-repeat="racialTrait in ::race.racialTraits">
+                    <div class="col-xs-12">
+                        <hr>
+                        <strong class="text-info">{{racialTrait.name}}</strong>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="description">{{racialTrait.description}}</div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

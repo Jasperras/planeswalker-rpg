@@ -1,0 +1,37 @@
+<section id="char-skills">
+    <header class="character-view-header">Skills</header>
+    <hr>
+
+    <div class="panel panel-default"
+         ng-click="loadSkills = true"
+         ng-repeat="attribute in ::attributes | filterSecondaryAttributes">
+        <div class="panel-heading">
+                        <span class="accordion-toggle collapsed" data-toggle="collapse" data-target="#{{$index}}">
+                            <header>
+                                <label>{{attribute.name}}</label>
+                            </header>
+                        </span>
+        </div>
+        <ul id="{{$index}}" class="list-group collapse">
+            <li class="list-group-item"
+                ng-if="loadSkills"
+                ng-repeat="charSkill in character.skills | filterByAttribute:attribute">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <strong>{{charSkill.skill.name}}</strong>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <input type="checkbox" class="char-skill-checkbox"
+                               ng-repeat="point in charSkill.points track by $index"
+                               ng-model="charSkill.points[$index]">
+                    </div>
+                    <div class="clearfix visible-xs"></div>
+                    <div class="col-xs-12 col-md-3">
+                        <input class="char-skill-level pull-right" type="number" ng-model="charSkill.level">
+                    </div>
+                </div>
+    </div>
+    </li>
+    </ul>
+    </div>
+</section>

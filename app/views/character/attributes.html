@@ -1,0 +1,35 @@
+<section id="char-attributes">
+    <header class="character-view-header">Attributes</header>
+    <hr>
+
+    <div class="form-group">
+        <label for="charLevel">Level</label>
+        <input id="charLevel" type="number" min="0" class="form-control"
+               ng-model="character.level">
+    </div>
+    <div class="form-group">
+        <label for="health">Health</label>
+
+        <div class="input-group">
+            <input id="health" type="number" class="form-control" min="0"
+                   max="{{character.attributes.Endurance * 2}}"
+                   ng-model="character.health">
+            <span class="input-group-addon">{{"/ " + character.attributes.Endurance * 2}}</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="mana">Mana</label>
+
+        <div class="input-group">
+            <input id="mana" type="number" class="form-control" min="0"
+                   max="{{character.attributes.Intelligence * 2}}"
+                   ng-model="character.mana">
+            <span class="input-group-addon">{{"/ " + character.attributes.Intelligence * 2}}</span>
+        </div>
+    </div>
+    <div class="form-group" ng-repeat="attribute in ::attributes" ng-if="attribute.secondary == false">
+        <label>{{attribute.name}}</label>
+        <input type="number" min="0" max="22" class="form-control"
+               ng-model="character.attributes[attribute.name]">
+    </div>
+</section>

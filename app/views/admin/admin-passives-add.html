@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-offset-4">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <strong>Add a passive</strong>
+            </div>
+
+            <div class="panel-body">
+
+                <label class="text-success" ng-show="success">Passive successfully added</label>
+                <label class="text-danger" ng-show="error">Something went wrong..</label>
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" class="form-control" placeholder="Name.." ng-model="passive.name">
+                </div>
+
+                <div class="form-group">
+                    <label for="attribute">Attribute</label>
+                    <select id="attribute" class="form-control"
+                            ng-model="passive.attribute"
+                            ng-options="attribute as attribute.name for attribute in attributes">
+                        <option>Select attribute..</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" class="form-control" ng-model="passive.description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input class="pull-right" type="submit" value="Save to database" ng-click="savePassive()">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

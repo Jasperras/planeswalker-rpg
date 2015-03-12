@@ -1,0 +1,18 @@
+<div class="row" ng-init="loadColors()">
+    <div class="col-md-offset-4">
+
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <strong>Colors</strong>
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="color in colors">
+                    {{ color.name }}
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>

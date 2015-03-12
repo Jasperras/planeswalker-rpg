@@ -1,0 +1,31 @@
+<div ng-init="loadItems = false">
+    <div class="panel panel-default" ng-repeat="attribute in ::attributes"
+         ng-if="attribute.secondary == false"
+         ng-click="loadItems = true">
+        <div class="panel-heading">
+            <span class="accordion-toggle collapsed" data-toggle="collapse" data-target="#{{$index + 'at'}}">
+                <header>
+                    <label>{{attribute.name}}</label>
+                </header>
+            </span>
+        </div>
+        <ul id="{{$index + 'at'}}" class="list-group collapse">
+            <li class="list-group-item"
+                ng-repeat="skill in ::skills"
+                ng-if="(attribute.name === skill.attribute.name) && loadItems">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12 collapsed" data-toggle="collapse" data-target="#{{$index + 'sk'}}">
+                            <strong class="text-info"><b class="caret"></b> {{skill.name}}</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="{{$index + 'sk'}}" class="col-xs-12 col-md-12 collapse">
+                            <div class="description">{{skill.description}}</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+<div>
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+
+            <li>
+                <a data-toggle="collapse" data-target="#races-add" href> Races</a>
+
+                <div id="races-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="races" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.races"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#guilds-add" href> Guilds</a>
+
+                <div id="guilds-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="guilds" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.guilds"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#attributes-add" href> Attributes</a>
+
+                <div id="attributes-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="attributes" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.attributes"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#passives-add" href> Passives</a>
+
+                <div id="passives-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="passives" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.passives"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#spells-add" href> Spells</a>
+
+                <div id="spells-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="spells" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.spells"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#skills-add" href> Skills</a>
+
+                <div id="skills-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="skills" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.skills"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#equipment-add" href> Equipment</a>
+
+                <div id="equipment-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="equipment" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.equipment"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li>
+                <a data-toggle="collapse" data-target="#consumables-add" href>Consumables</a>
+
+                <div id="consumables-add" class="collapse">
+                    <ul class="nav nav-bar">
+                        <li>
+                            <a href ui-sref="consumables" ng-click="initializer()"><span>Show entries</span></a>
+                        </li>
+                        <li>
+                            <a href ui-sref="admin.consumables"><span>Add entry</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <!--Uncomment when needed-->
+            <!--<li>-->
+            <!--<a data-toggle="collapse" data-target="#colors-add" href>                                     Colors</a>-->
+
+            <!--<div id="colors-add" class="collapse">-->
+            <!--<ul class="nav nav-bar">-->
+            <!--<li>-->
+            <!--<a href ui-sref="admin.colors"><span>List</span></a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href ui-sref="admin.colorsAdd"><span>Add</span></a>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-10">
+        <h1>Admin Panel</h1>
+
+        <div ui-view></div>
+    </div>
+</div>

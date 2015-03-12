@@ -1,0 +1,196 @@
+<!doctype html>
+<html class="no-js" ng-app="sheetApp">
+<head>
+    <base href="/planeswalkers/">
+    <title>Character Sheet</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Jasper Ras">
+    <meta name="description" content="Character Sheet">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- endbuild -->
+</head>
+<body ng-controller="CharacterCtrl">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Add your site or application content here -->
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="min-width" ng-if="user.loggedIn" id="char-nav" data-offset="0" bs-scrollspy-list>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li><a href="/planeswalkers/#char-identity">Identity</a></li>
+                    <li><a href="/planeswalkers/#char-attributes">Attributes</a></li>
+                    <li><a href="/planeswalkers/#char-skills">Skills</a></li>
+                    <li><a href="/planeswalkers/#char-spells">Spells</a></li>
+                    <li><a href="/planeswalkers/#char-passives">Passives</a></li>
+                    <li><a href="/planeswalkers/#char-equipment">Equipment</a></li>
+                    <li><a href="/planeswalkers/#char-consumables">Consumables</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container main">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <div ui-view></div>
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group">
+                <div class="sidebar-labels">
+                    <label class="text-danger" ng-if="!user.loggedIn">Not logged in</label>
+                    <label class="text-danger" ng-if="user.loggedIn">{{user.username | capitalize}}</label>
+                    <label class="text-warning" ng-if="character.name !== ''">{{' - ' + character.name}}</label>
+                </div>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="login" ui-sref-active="active"
+                   ng-if="!user.loggedIn">Login</a>
+                <a class="list-group-item" data-toggle="offcanvas" ng-if="user.loggedIn" ng-click="logoutUser()">Logout</a>
+                <a class="list-group-item collapsed" data-toggle="collapse" data-target="#characters" ng-if="user.loggedIn"><b class="caret"></b> Characters</a>
+                <div id="characters" class="collapse" ng-if="user.loggedIn">
+                    <a class="list-group-item" data-toggle="offcanvas"
+                       ng-repeat="char in user.characters" ng-click="getCharacterByName(char)">
+                        {{char}}
+                    </a>
+                    <a class="list-group-item" data-toggle="offcanvas" ui-sref="sheet" ng-click="newCharacter()">New</a>
+                </div>
+                <hr>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="races" ui-sref-active="active">Races</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="guilds" ui-sref-active="active">Guilds</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="attributes"
+                   ui-sref-active="active">Attributes</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="skills" ui-sref-active="active">Skills</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="spells" ui-sref-active="active">Spells</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="passives"
+                   ui-sref-active="active">Passives</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="equipment"
+                   ui-sref-active="active">Equipment</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="consumables"
+                   ui-sref-active="active">Consumables</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="info"
+                   ui-sref-active="active">Information</a>
+                <a class="list-group-item" data-toggle="offcanvas" ui-sref="admin" ui-sref-active="active"
+                   ng-show="user.type === 'admin'">Admin</a>
+            </div>
+        </div><!--/.sidebar-offcanvas-->
+    </div><!--/row-->
+</div><!--/.container-->
+
+<!-- outside the container -->
+<my-notification></my-notification>
+
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+<script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+
+<script src="scripts/attribute/attributeservice.js"></script>
+<script src="scripts/attribute/attributecontroller.js"></script>
+
+<script src="scripts/character/charactermodel.js"></script>
+<script src="scripts/character/characterservice.js"></script>
+<script src="scripts/character/charactercontroller.js"></script>
+
+<script src="scripts/color/colorservice.js"></script>
+<script src="scripts/color/colorcontroller.js"></script>
+
+<script src="scripts/constants/apilocation.js"></script>
+
+<script src="scripts/consumable/consumableservice.js"></script>
+<script src="scripts/consumable/consumablecontroller.js"></script>
+
+<script src="scripts/notification/notificationdirective.js"></script>
+
+<script src="scripts/equipment/equipmentservice.js"></script>
+<script src="scripts/equipment/equipmentcontroller.js"></script>
+
+<script src="scripts/guild/guildservice.js"></script>
+<script src="scripts/guild/guildcontroller.js"></script>
+
+<script src="scripts/passive/passiveservice.js"></script>
+<script src="scripts/passive/passivecontroller.js"></script>
+
+<script src="scripts/race/raceservice.js"></script>
+<script src="scripts/race/racecontroller.js"></script>
+
+<script src="scripts/skill/skillservice.js"></script>
+<script src="scripts/skill/skillcontroller.js"></script>
+
+<script src="scripts/spell/spellservice.js"></script>
+<script src="scripts/spell/spellcontroller.js"></script>
+
+<script src="scripts/user/usermodel.js"></script>
+<script src="scripts/user/userservice.js"></script>
+<script src="scripts/user/usercontroller.js"></script>
+<script src="scripts/user/admincontroller.js"></script>
+<script src="scripts/user/requirelogin.js"></script>
+<script src="scripts/filters/filterbycolor.js"></script>
+<script src="scripts/filters/filterbyattribute.js"></script>
+<script src="scripts/filters/filtersecondaryattributes.js"></script>
+<script src="scripts/offcanvas.js"></script>
+<script src="scripts/filters/capitalizefirst.js"></script>
+<!-- endbuild -->
+</body>
+</html>

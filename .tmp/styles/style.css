@@ -1,0 +1,278 @@
+/* Style.css */
+html,
+body {
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+body {
+    padding-top: 75px;
+}
+
+.navbar-default {
+    background-color: #222;
+    border-bottom: 1px solid #3498DB;
+}
+.navbar-default .navbar-character:hover, .navbar-default .navbar-character:focus,
+.navbar-default .navbar-button:hover, .navbar-default .navbar-button:focus {
+    background-color: #3498DB;
+}
+.navbar-default .navbar-character,
+.navbar-default .navbar-button {
+    border-color: #3498DB;
+}
+.navbar-character:focus, .navbar-button:focus {
+    outline: 0 none;
+}
+.navbar-character {
+    position: relative;
+    float: left;
+    padding: 9px 10px;
+    margin-top: 13px;
+    margin-right: 5px;
+    margin-bottom: 13px;
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.navbar-button {
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.main {
+    margin-bottom: 25px;
+}
+.sidebar-offcanvas {
+    position: fixed;
+    top: 75px;
+    right: 0;
+    height: 88%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#char-nav {
+    border: none;
+    margin-top: 13px;
+}
+.nav-tabs {
+    border: none;
+}
+.nav > li > a {
+    padding: 8px 15px;
+}
+.panel {
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+    #char-nav {
+        max-width: 80%;
+        margin-top: -5px;
+    }
+    .min-width{
+        overflow-y: hidden;
+        overflow-x:auto
+    }
+    ul.nav {
+        display:-webkit-inline-flex;
+        display:inline-flex
+    }
+
+    .row-offcanvas {
+        position: relative;
+        transition: all .5s ease-out;
+    }
+
+    .row-offcanvas-right {
+        right: 0;
+    }
+
+    .row-offcanvas-left {
+        left: 0;
+    }
+
+    .row-offcanvas-right
+    .sidebar-offcanvas {
+        top: 75px;
+        right: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-left
+    .sidebar-offcanvas {
+        left: -50%; /* 6 columns */
+    }
+
+    .row-offcanvas-right.active {
+        left: -50%; /* 6 columns */
+    }
+    .row-offcanvas-right.active
+    .sidebar-offcanvas {
+        transition: all .3s ease-out;
+        right: 0;
+    }
+
+    .row-offcanvas-left.active {
+        left: 50%; /* 6 columns */
+    }
+
+    .sidebar-offcanvas {
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: fixed;
+        top: 0;
+        height: 88%;
+        width: 50%; /* 6 columns */
+    }
+}
+.information {
+    margin-bottom: 30px;
+}
+
+.sidebar-labels {
+    margin-left: 10px;
+    padding-bottom: 10px;
+}
+.notification {
+    position: fixed;
+    bottom: -22px;
+    width: 100%;
+    border-radius: 0;
+    z-index: 10;
+}
+.character-view {
+    margin-bottom: 15px;
+}
+.character-view section {
+    padding-top: 75px;
+    margin-top: -75px;
+}
+.character-view-header {
+    font-size: 25px;
+}
+#character-race, #character-guild {
+    margin-top: 15px;
+}
+.panel-heading {
+    border: none;
+    border-radius: 0;
+}
+.panel-heading .accordion-toggle label {
+    font-size: 22px;
+}
+.panel-heading .accordion-toggle header:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';
+    font-size: 25px;
+    margin-right: 5px;
+    content: "\e114";
+    float: right;
+    overflow: no-display;
+}
+
+.panel-heading .accordion-toggle.collapsed header:after {
+    /* symbol for "collapsed" panels */
+    content: "\e113";
+}
+
+.panel-footer div {
+    text-align: center;
+    font-size: 20px;
+}
+
+.color-box {
+    display: inline;
+    background: none;
+    border: none;
+}
+
+.cb-checkbox[type="checkbox"] {
+    display: none;
+}
+
+.cb-checkbox[type="checkbox"] + label span {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin: -1px 4px 0 0;
+    vertical-align: middle;
+    border: 1px solid black;
+    border-radius: 50%;
+    opacity: 0.1;
+    cursor: pointer;
+}
+
+.cb-checkbox[type="checkbox"]:hover + label span {
+    opacity: 0.75;
+}
+
+.cb-checkbox[type="checkbox"]:checked + label span {
+    opacity: 1;
+}
+
+.Red {
+    background: url('../images/mountain.png');
+    background-size: 33px 33px;
+}
+
+.Blue {
+    background: url('../images/island.png');
+    background-size: 33px 33px;
+}
+
+.Black {
+    background: url('../images/swamp.png');
+    background-size: 33px 33px;
+}
+
+.White {
+    background: url('../images/plains.png');
+    background-size: 33px 33px;
+}
+
+.Green {
+    background: url('../images/forest.png');
+    background-size: 33px 33px;
+}
+
+.char-skill-checkbox {
+    margin-left: 5% !important;
+}
+.char-skill-level {
+    width: 100%;
+    margin-top: 2%;
+}
+.passive-ul {
+    border: none;
+    padding-top: 10px;
+}
+
+.passive-ul li {
+    border: none;
+}
+
+/* login.html ================================
+============================================== */
+.panel-heading {
+    padding: 5px 15px;
+}
+
+.panel-footer {
+    padding: 1px 15px;
+    color: #A0A0A0;
+}
+
+.profile-img {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    border-radius: 50%;
+}
