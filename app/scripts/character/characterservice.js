@@ -15,6 +15,6 @@ angular.module('sheetApp')
             save: {method: 'POST'},
             query: {method: 'GET', isArray: true, cache: true},
             remove: {method: 'DELETE'},
-            delete: {method: 'DELETE'}
+            delete: {method: 'DELETE', params: {name: '@name'}}
         });
     });

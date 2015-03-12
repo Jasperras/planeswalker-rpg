@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" ng-app="sheetApp">
 <head>
-    <base href="/planeswalkers/">
+    <base href="/">
     <title>Character Sheet</title>
     <meta charset="utf-8">
     <meta name="author" content="Jasper Ras">
@@ -36,13 +36,13 @@
             </button>
             <div class="min-width" ng-if="user.loggedIn" id="char-nav" data-offset="0" bs-scrollspy-list>
                 <ul class="nav nav-tabs" role="tablist">
-                    <li><a href="/planeswalkers/#char-identity">Identity</a></li>
-                    <li><a href="/planeswalkers/#char-attributes">Attributes</a></li>
-                    <li><a href="/planeswalkers/#char-skills">Skills</a></li>
-                    <li><a href="/planeswalkers/#char-spells">Spells</a></li>
-                    <li><a href="/planeswalkers/#char-passives">Passives</a></li>
-                    <li><a href="/planeswalkers/#char-equipment">Equipment</a></li>
-                    <li><a href="/planeswalkers/#char-consumables">Consumables</a></li>
+                    <li><a href="/#char-identity">Identity</a></li>
+                    <li><a href="/#char-attributes">Attributes</a></li>
+                    <li><a href="/#char-skills">Skills</a></li>
+                    <li><a href="/#char-spells">Spells</a></li>
+                    <li><a href="/#char-passives">Passives</a></li>
+                    <li><a href="/#char-equipment">Equipment</a></li>
+                    <li><a href="/#char-consumables">Consumables</a></li>
                 </ul>
             </div>
         </div>
@@ -69,11 +69,17 @@
                 <a class="list-group-item" data-toggle="offcanvas" ng-if="user.loggedIn" ng-click="logoutUser()">Logout</a>
                 <a class="list-group-item collapsed" data-toggle="collapse" data-target="#characters" ng-if="user.loggedIn"><b class="caret"></b> Characters</a>
                 <div id="characters" class="collapse" ng-if="user.loggedIn">
-                    <a class="list-group-item" data-toggle="offcanvas"
-                       ng-repeat="char in user.characters" ng-click="getCharacterByName(char)">
-                        {{char}}
+                    <a class="list-group-item" ng-repeat="char in user.characters">
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-8 col-md-8" ng-click="getCharacterByName(char)" data-toggle="offcanvas">
+                                {{char}}
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4">
+                                <span class="text-danger glyphicon glyphicon-remove pull-right" ng-click="deleteCharacter(char)"></span>
+                            </div>
+                        </div>
                     </a>
-                    <a class="list-group-item" data-toggle="offcanvas" ui-sref="sheet" ng-click="newCharacter()">New</a>
+                    <a class="list-group-item" ui-sref="sheet" ng-click="newCharacter()" data-toggle="offcanvas">New character</a>
                 </div>
                 <hr>
                 <a class="list-group-item" data-toggle="offcanvas" ui-sref="races" ui-sref-active="active">Races</a>

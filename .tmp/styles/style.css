@@ -150,9 +150,12 @@ body {
 .character-view {
     margin-bottom: 15px;
 }
-.character-view section {
+.character-view-identity section {
     padding-top: 75px;
     margin-top: -75px;
+}
+.character-view section {
+    padding-top: 75px;
 }
 .character-view-header {
     font-size: 25px;

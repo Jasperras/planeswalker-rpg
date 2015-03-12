@@ -34,14 +34,6 @@ angular.module('sheetApp')
         /*
          *  Public methods
          */
-        Character.prototype.setRace = function (race) {
-            this.race = race;
-        };
-
-        Character.prototype.setGuild = function (guild) {
-            this.guild = guild;
-        };
-
         Character.prototype.addPassive = function (passive) {
             var duplicate = false;
 
@@ -58,6 +50,14 @@ angular.module('sheetApp')
             return duplicate;
         };
 
+        Character.prototype.removePassive = function (passive) {
+            var index = this.passives.indexOf(passive);
+
+            if (index > -1) {
+                this.passives.splice(index, 1);
+            }
+        };
+
         Character.prototype.addSpell = function (spell) {
             var duplicate = false;
 
@@ -72,6 +72,14 @@ angular.module('sheetApp')
             }
 
             return duplicate;
+        };
+
+        Character.prototype.removeSpell = function (spell) {
+            var index = this.spells.indexOf(spell);
+
+            if (index > -1) {
+                this.spells.splice(index, 1);
+            }
         };
 
         Character.prototype.resetSkillPoints = function () {

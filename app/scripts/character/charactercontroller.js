@@ -25,6 +25,7 @@ angular.module('sheetApp')
         $scope.spells = SpellService.query();
 
         $scope.character = {};
+        $scope.rename = false;
         $scope.notification = {type: "", text: "", show: false, timer: 0};
 
         // Functions
@@ -101,22 +102,24 @@ angular.module('sheetApp')
             }
         };
 
-        $scope.removeCharacter = function () {
-            CharacterService.delete($scope.character).$promise.then(
+        $scope.deleteCharacter = function (char) {
+            CharacterService.delete({name: char}).$promise.then(
                 function () {
-                    $scope.notification = {
-                        type: "success",
-                        text: "Successfully removed: " + $scope.character.name,
-                        show: true,
-                        timer: 5000
-                    };
-                    $scope.character.isNew = false;
+                    if(!$scope.rename) {
+                        $scope.notification = {
+                            type: "success",
+                            text: "Successfully removed: " + char,
+                            show: true,
+                            timer: 5000
+                        };
+                        $scope.newCharacter();
+                    }
                     $scope.getCharacterNames();
                 },
                 function () {
                     $scope.notification = {
                         type: "danger",
-                        text: "Could not remove: " + $scope.character.name,
+                        text: "Could not remove: " + char,
                         show: true,
                         timer: 5000
                     };
@@ -126,11 +129,16 @@ angular.module('sheetApp')
 
         $scope.newName = "";
         $scope.renameCharacter = function (name) {
+            $scope.rename = true;
+            $scope.deleteCharacter($scope.character.name);
             $scope.character.name = name;
+
+            $timeout($scope.saveCharacter());
         };
 
         $scope.logoutUser = function () {
-            $rootScope.user = new User();
+            $rootScope.user = null;
+            $scope.character = null;
             $state.go('login');
         };
 
